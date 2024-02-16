@@ -36,7 +36,8 @@ $( document ).ready(function() {
     .done(function( data ) {
         $("#eventTitle").html(null);
         $.each( data.categories, function( key, event ) {
-            $( "#eventList" ).append(`
+            if(event.title === 'Volcanoes' || event.title === 'Wildfires' || event.title === 'Sea and Lake Ice'){
+                $( "#eventList" ).append(`
                 <li class="event">
                     <div class='event-desc'>
                     <h3><a href='#' onclick='showLayers("${event.title}", "${event.link}");'>` + event.title + `</a></h3>
@@ -45,6 +46,8 @@ $( document ).ready(function() {
                     <img src="assets/img/categories/${event.id}.png"></img>
                 </li>
             `);
+            }
+            
         });
     });
 });
